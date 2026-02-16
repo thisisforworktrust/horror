@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nightforge Runtime v1</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="runtime-page">
+    <div class="layout-runtime">
+      <aside class="panel runtime-panel">
+        <h1>Nightforge Runtime v1</h1>
+        <p>Load a scene JSON exported from <code>editor.html</code>.</p>
+        <div class="stack">
+          <button id="load-demo">Load Built-in Demo</button>
+          <input id="scene-file" type="file" accept="application/json" />
+          <button id="load-scene">Load Scene JSON</button>
+          <a href="editor.html">Open Editor</a>
+        </div>
+      </aside>
+
+      <canvas id="game-canvas" aria-label="runtime viewport"></canvas>
+
+      <div id="game-ui" class="game-ui">
+        <div data-ui="message" class="message-box"></div>
+      </div>
+    </div>
+
+    <script type="module" src="runtime/main.js"></script>
+  </body>
+</html>
