@@ -1,82 +1,165 @@
-# Nightforge Lite (Beginner Horror Game Builder)
+# Horror Engine v1 (Browser + Three.js)
 
-Nightforge Lite is a browser game builder for making horror games with Three.js **without starting from raw code**.
+This project is a **small, real, extendable browser-based 3D horror engine** built with:
 
-It has two modes:
+- HTML + CSS + JavaScript ES modules
+- Three.js (loaded from CDN)
+- No build tools / no bundler
 
-1. **Beginner Block Builder (Scratch-style feel):** click buttons to add Rooms, Lights, Monsters, and Triggers.
-2. **Code Console (Advanced):** write real JavaScript for custom systems once you need deeper control.
+It includes two apps:
 
-## Run it
+- `editor.html` → scene editor prototype
+- `index.html` → runtime game player
 
-```bash
-python3 -m http.server 4173
+---
+
+## File / Folder Structure
+
+```txt
+index.html                # Runtime app
+editor.html               # Web editor app
+styles.css                # Shared styling
+
+engine/
+  Component.js            # Base component class
+  Entity.js               # Entity container
+  Scene.js                # Scene model + JSON serialization
+  Game.js                 # Runtime loop, renderer, active scene
+  UI.js                   # In-game message UI layer
+  componentRegistry.js    # JSON -> component factory
+  components/
+    TransformComponent.js
+    MeshComponent.js
+    ColliderComponent.js
+    LightComponent.js
+    TriggerComponent.js
+  systems/
+    CollisionSystem.js    # AABB collision placeholder system
+
+runtime/
+  main.js                 # Runtime bootstrap + simple FPS controller
+
+editor/
+  app.js                  # Editor UI + hierarchy + inspector + save/load
+
+scenes/
+  defaultScene.js         # Fallback starter scene
 ```
 
-Open `http://localhost:4173`.
+---
 
-## Beginner workflow (recommended)
+## Runtime Architecture (v1)
 
-1. Click **+ Room / + Flicker Light / + Patrol Monster / + Trigger Zone**.
-2. Pick a block in the list.
-3. Edit values in **Selected block**.
-4. Click **Apply this block to scene** (or **Rebuild Scene**).
-5. Move around with **WASD + mouse**.
-6. Export your game with **Export Project JSON**.
+### `Game`
 
-This is designed so beginners can iterate visually first, then learn code later.
+Responsibilities:
 
-## Advanced workflow (real coding)
+- creates renderer/camera/main loop
+- owns active scene
+- runs per-frame updates
+- runs collision checks
+- renders the world
 
-Use **Code Console (Advanced)** in the right panel.
+File: `engine/Game.js`.
 
-Your script gets:
+### `Scene`
 
-- `engine` → full runtime object
-- `project` → current generated project JSON
-- `log(message)` → prints to UI log
-- `THREE` → Three.js module
+Responsibilities:
 
-Example:
+- holds `entities[]`
+- `loadFromJSON(data)` to rebuild scene
+- `toJSON()` to serialize scene
 
-```js
-log("Adding custom ambient pulse");
+File: `engine/Scene.js`.
 
-engine.onLoop((delta, ctx) => {
-  const pulse = Math.sin(ctx.time * 2) * 0.5 + 0.5;
-  engine.ambient.intensity = 0.2 + pulse * 0.2;
-});
-```
+### `Entity + Component`
 
-Click **Run Code** to apply.
+- `Entity`: `id`, `name`, `object3D`, `components[]`
+- components are modular behavior/data units
 
-## Trigger options for beginners
+Implemented v1 components:
 
-`On Enter` dropdown supports:
+- `TransformComponent`
+- `MeshComponent`
+- `ColliderComponent`
+- `LightComponent`
+- `TriggerComponent`
 
-- `show_message`
-- `fog_red`
-- `flashlight_burst`
+Files: `engine/Entity.js`, `engine/components/*`.
 
-## Main files
+### Physics Hook (Placeholder)
 
-- `index.html` – beginner builder UI + advanced code console.
-- `styles.css` – editor layout and visual style.
-- `src/main.js` – block editor logic, project generation, runtime glue.
-- `src/engine/HorrorEngine.js` – Three.js runtime/game loop.
-- `src/engine/components.js` – reusable component behaviors.
-- `src/engine/projectLoader.js` – converts project data into scene entities.
-- `src/projects/demoProject.js` – starter data.
+`CollisionSystem` currently uses **AABB vs AABB** overlap checks (no rigid body physics).
 
-## For building real games
+This is intentionally simple, and is the extension point for plugging in a full physics engine later.
 
-This scaffold is intentionally simple, but not a toy. You can extend it with:
+File: `engine/systems/CollisionSystem.js`.
 
-- inventory systems
-- dialogue events
-- audio manager
-- save/load
-- enemy state machines
-- post-processing
+### UI Layer
 
-Start in blocks, then move systems into the code console and engine files as your project grows.
+`UI` can show in-game message text overlays for narrative beats.
+
+File: `engine/UI.js`.
+
+---
+
+## Editor Features (v1)
+
+`editor.html` includes:
+
+- 3D viewport (Three.js)
+- hierarchy panel (list of entities)
+- inspector panel (edit name, position, rotation, scale)
+- add/delete entity
+- add cube mesh
+- export scene JSON
+- import scene JSON
+- save scene to runtime slot (`localStorage`) for quick testing in runtime app
+
+---
+
+## How To Use (Step-by-step)
+
+## 1) Open the editor
+
+Open `editor.html` in your browser.
+
+## 2) Create a scene
+
+- click **Add Cube Entity**
+- select entities in **Scene Hierarchy**
+- edit transform values in **Inspector**
+
+## 3) Export the scene
+
+- click **Export Scene JSON** to download `scene.json`
+
+Optional quick path:
+
+- click **Save To Runtime Slot** to store the scene in `localStorage`
+
+## 4) Load and run in runtime game
+
+Open `index.html`.
+
+You can either:
+
+- load `scene.json` using **Load Scene JSON**, or
+- if you used **Save To Runtime Slot**, runtime auto-loads from localStorage
+
+Controls:
+
+- `WASD` move
+- `Shift` sprint
+- click viewport + move mouse to look around
+
+---
+
+## Notes on Simplifications
+
+- Collision = AABB overlap only (placeholder system)
+- No rigid body simulation yet
+- No transform gizmos yet (numeric inspector only)
+- No scene graph parenting UI yet
+
+These are deliberate v1 constraints to keep architecture clear and extendable.
