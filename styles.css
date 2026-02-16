@@ -1,0 +1,148 @@
+:root {
+  color-scheme: dark;
+  --bg: #07080d;
+  --bg-soft: #11131a;
+  --text: #e7e8ee;
+  --accent: #8f292c;
+  --muted: #8f92a0;
+  --border: #242734;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at center, #11131f 0%, var(--bg) 75%);
+  color: var(--text);
+}
+
+#app {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.toolbar,
+.statusbar,
+.panel {
+  background: color-mix(in oklab, var(--bg-soft), black 20%);
+  border: 1px solid var(--border);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+}
+
+.toolbar h1 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+button {
+  background: #1e2231;
+  color: var(--text);
+  border: 1px solid #343a52;
+  border-radius: 0.35rem;
+  padding: 0.38rem 0.6rem;
+  cursor: pointer;
+}
+
+button:hover:enabled {
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.workspace {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  gap: 0.65rem;
+  padding: 0.65rem;
+}
+
+.panel {
+  padding: 0.7rem;
+  overflow: auto;
+}
+
+#hierarchy {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#hierarchy li {
+  padding: 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+}
+
+#hierarchy li.active {
+  border-color: var(--accent);
+  background: #1a1f2d;
+}
+
+.viewport-wrap {
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  overflow: hidden;
+  min-height: 0;
+}
+
+#viewport {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+form {
+  display: grid;
+  gap: 0.35rem;
+}
+
+h2,
+h3 {
+  margin: 0.5rem 0;
+}
+
+label {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+}
+
+input {
+  width: 100%;
+  background: #171b28;
+  border: 1px solid #2e3448;
+  color: var(--text);
+  border-radius: 0.25rem;
+  padding: 0.3rem;
+}
+
+.statusbar {
+  padding: 0.45rem 0.8rem;
+  color: var(--muted);
+}
