@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horror Engine Runtime</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <canvas id="game-canvas"></canvas>
+
+      <div class="overlay top-left">
+        <h1>Horror Engine Runtime</h1>
+        <p>WASD move · Shift sprint · click viewport for mouse look</p>
+        <label class="file-label">
+          Load Scene JSON
+          <input id="load-json" type="file" accept="application/json" />
+        </label>
+        <p id="runtime-log" class="small"></p>
+      </div>
+
+      <div id="game-ui" class="game-ui">
+        <div data-ui-message class="game-message"></div>
+      </div>
+    </div>
+
+    <script type="module" src="runtime/main.js"></script>
+  </body>
+</html>

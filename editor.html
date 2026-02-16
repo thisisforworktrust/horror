@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Horror Engine Editor</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="editor-layout">
+      <aside class="panel left">
+        <h2>Scene Hierarchy</h2>
+        <button id="add-cube">Add Cube Entity</button>
+        <div id="hierarchy" class="hierarchy"></div>
+      </aside>
+
+      <main class="viewport-wrap">
+        <canvas id="editor-canvas"></canvas>
+      </main>
+
+      <aside class="panel right">
+        <h2>Inspector</h2>
+        <div id="inspector" class="inspector"></div>
+
+        <hr />
+        <button id="export-scene">Export Scene JSON</button>
+        <label class="file-label">
+          Import Scene JSON
+          <input id="import-scene" type="file" accept="application/json" />
+        </label>
+        <button id="save-runtime">Save To Runtime Slot</button>
+        <p id="status" class="small">Tip: save to runtime slot, then open index.html.</p>
+      </aside>
+    </div>
+
+    <script type="module" src="editor/app.js"></script>
+  </body>
+</html>

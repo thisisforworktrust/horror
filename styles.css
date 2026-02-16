@@ -1,0 +1,155 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #05070b;
+  color: #e8edf6;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app,
+.editor-layout {
+  width: 100%;
+  height: 100%;
+}
+
+#game-canvas,
+#editor-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 20;
+  background: rgba(7, 9, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.8rem;
+  width: 320px;
+}
+
+.top-left {
+  top: 1rem;
+  left: 1rem;
+}
+
+.game-ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.game-message {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 120, 110, 0.6);
+  color: #ffc9b2;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.game-message.visible {
+  opacity: 1;
+}
+
+.file-label {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.file-label input {
+  margin-top: 0.3rem;
+  width: 100%;
+}
+
+.small {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr 300px;
+}
+
+.panel {
+  padding: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0a0e15;
+  overflow: auto;
+}
+
+.panel.right {
+  border-right: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.viewport-wrap {
+  position: relative;
+  min-width: 0;
+}
+
+.hierarchy {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.hierarchy-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem;
+}
+
+.hierarchy-item button,
+.panel button {
+  padding: 0.45rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  color: inherit;
+  cursor: pointer;
+}
+
+.hierarchy-item.selected button:first-child {
+  outline: 1px solid #77b2ff;
+}
+
+.inspector {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.row input {
+  width: 100%;
+  padding: 0.35rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+}
