@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nightforge Lite - Beginner Horror Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas" aria-label="Nightforge canvas"></canvas>
+
+      <aside class="panel panel-left">
+        <h1>Nightforge Lite</h1>
+        <p>Beginner block builder + pro code console</p>
+
+        <h2>1) Add blocks</h2>
+        <div class="stack buttons-grid">
+          <button data-add="room">+ Room</button>
+          <button data-add="light">+ Flicker Light</button>
+          <button data-add="monster">+ Patrol Monster</button>
+          <button data-add="trigger">+ Trigger Zone</button>
+        </div>
+
+        <h2>2) Build list</h2>
+        <div id="block-list" class="block-list"></div>
+
+        <div class="stack">
+          <button id="rebuild-scene">Rebuild Scene</button>
+          <button id="export-project">Export Project JSON</button>
+          <textarea id="export-output" rows="8" readonly></textarea>
+        </div>
+      </aside>
+
+      <aside class="panel panel-right">
+        <h2>Selected block</h2>
+        <div id="block-editor" class="stack"></div>
+
+        <h2>Playtest</h2>
+        <p>WASD + mouse, Shift sprint, E flashlight</p>
+        <button id="lock-pointer">Start Playtest</button>
+
+        <h2>Code Console (Advanced)</h2>
+        <p class="small">Runs after every scene rebuild. You can write real JS.</p>
+        <textarea id="code-console" rows="10"></textarea>
+        <button id="run-code">Run Code</button>
+        <pre id="code-log" class="code-log"></pre>
+      </aside>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
