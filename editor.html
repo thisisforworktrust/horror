@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nightforge Editor v2 - Voxel Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="editor-page">
+    <div class="layout-editor">
+      <aside class="panel">
+        <h1>Voxel Map Builder</h1>
+        <label class="inspector-row">
+          <span>Scene Name</span>
+          <input id="scene-name" value="VoxelScene" />
+        </label>
+
+        <div class="stack">
+          <button id="toggle-build">Enter Build Controls</button>
+          <label class="inspector-row">
+            <span>Block</span>
+            <input id="voxel-color" type="color" value="#7a2a2a" />
+          </label>
+          <button id="add-floor">Add Floor Plane</button>
+          <button id="clear-voxels">Clear Voxels</button>
+        </div>
+
+        <h2>Minecraft-like Controls</h2>
+        <ul class="help-list">
+          <li><strong>WASD</strong> move</li>
+          <li><strong>Mouse</strong> look</li>
+          <li><strong>Space / Ctrl</strong> up/down</li>
+          <li><strong>Left Click</strong> place voxel</li>
+          <li><strong>Right Click</strong> remove voxel</li>
+          <li><strong>Esc</strong> unlock cursor</li>
+        </ul>
+
+        <h2>Scene Hierarchy</h2>
+        <ul id="hierarchy-list" class="hierarchy-list"></ul>
+      </aside>
+
+      <main class="editor-viewport-wrap">
+        <canvas id="editor-canvas" aria-label="editor viewport"></canvas>
+        <div class="crosshair">+</div>
+      </main>
+
+      <aside class="panel">
+        <h1>Inspector</h1>
+        <div id="inspector" class="inspector"></div>
+
+        <h2>Save / Load Scene JSON</h2>
+        <div class="stack">
+          <button id="export-scene">Export Scene</button>
+          <input id="import-scene-file" type="file" accept="application/json" />
+          <button id="import-scene">Import Scene</button>
+          <textarea id="scene-json" rows="8" readonly></textarea>
+          <a href="index.html">Open Runtime</a>
+        </div>
+      </aside>
+    </div>
+
+    <script type="module" src="editor/main.js"></script>
+  </body>
+</html>
