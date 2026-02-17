@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Night Shift: Corridor 13</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="hud">
+      <h1>Night Shift: Corridor 13</h1>
+      <p id="objective">Find 3 ritual totems and reach the exit.</p>
+      <p id="status">Totems collected: <span id="totemCount">0</span>/3</p>
+      <p id="health">Sanity: <span id="sanityValue">100</span>%</p>
+      <p id="tip">WASD to move · Mouse to look · Shift to run</p>
+    </div>
+
+    <div id="overlay" class="visible">
+      <div class="panel">
+        <h2 id="overlayTitle">Enter Corridor 13</h2>
+        <p id="overlayText">
+          You are the last night guard in an abandoned hospital. The lights keep failing.
+          Something moves in the dark. Collect all totems and reach the red-lit exit.
+        </p>
+        <button id="startButton">Start Game</button>
+      </div>
+    </div>
+
+    <div id="crosshair"></div>
+    <script type="module" src="game.js"></script>
+  </body>
+</html>

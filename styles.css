@@ -1,0 +1,102 @@
+:root {
+  color-scheme: dark;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+canvas {
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+  color: #e8edf9;
+  text-shadow: 0 0 10px #000;
+  pointer-events: none;
+}
+
+#hud h1 {
+  margin: 0 0 0.5rem;
+  color: #c13d3d;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+#hud p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+#crosshair {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at center, rgba(30, 0, 0, 0.45), rgba(0, 0, 0, 0.95));
+  transition: opacity 220ms ease;
+}
+
+#overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panel {
+  width: min(90vw, 520px);
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(3, 3, 4, 0.85);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.12);
+}
+
+.panel h2 {
+  margin: 0 0 0.8rem;
+  color: #f16d6d;
+}
+
+.panel p {
+  margin: 0 0 1.2rem;
+  line-height: 1.55;
+  color: #dde3f3;
+}
+
+button {
+  border: none;
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #b31212;
+  color: #fff;
+  font-weight: 700;
+}
+
+button:hover {
+  background: #d31f1f;
+}
